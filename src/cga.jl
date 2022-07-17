@@ -32,7 +32,7 @@ julia> cgasample(ones(10) * 0.5)
  0
 ```
 """
-function cgasample(probvector::Array{Float64,1})::Array{Int}
+function cgasample(probvector::Array{T,1})::Array{Int} where T <: Real
     len = length(probvector)
     ch = Array{Bool}(undef, len)
     rands = rand(Float64, len)
