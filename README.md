@@ -68,7 +68,18 @@ y = 20.0 .+ 10.0 .* cleanx .+ e
 dirtyx = cleanx
 ```
 
-and assume that $x^*$ is unobservable and it $x$ is observed as $x = x^* + \delta$. We can calculate an unbiased estimate of the slope parameter using 
+and assume that 
+
+$$
+x^*
+$$ 
+
+is unobservable and it $x$ is observed as 
+
+$$
+x = x^* + \delta$$
+
+. We can calculate an unbiased estimate of the slope parameter using 
 
 
 ```Julia 
