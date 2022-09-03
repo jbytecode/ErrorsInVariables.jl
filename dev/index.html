@@ -1,54 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>ErrorsInVariables.jl · Errors-in-variables estimation using Compact Genetic Algorithms in Julia</title><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="estimator/">Errors-in-variables estimation using Compact Genetic Algorithms in Julia</a></span></div><form class="docs-search" action="search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="estimator/">The Estimator</a></li><li><a class="tocitem" href="cga/">CGA</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>ErrorsInVariables.jl</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>ErrorsInVariables.jl</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/jbytecode/ErrorsInVariables.jl/blob/main/docs/src/index.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><p><a href="https://jbytecode.github.io/ErrorsInVariables.jl/"><img src="https://img.shields.io/badge/docs-dev-blue.svg" alt="Doc"/></a> <a href="https://codecov.io/gh/jbytecode/eive.jl"><img src="https://codecov.io/gh/jbytecode/eive.jl/branch/main/graph/badge.svg?token=KMF7H1DS01" alt="codecov"/></a></p><h1 id="ErrorsInVariables.jl"><a class="docs-heading-anchor" href="#ErrorsInVariables.jl">ErrorsInVariables.jl</a><a id="ErrorsInVariables.jl-1"></a><a class="docs-heading-anchor-permalink" href="#ErrorsInVariables.jl" title="Permalink"></a></h1><p>Error-in-variables estimation using Compact Genetic Algorithms in Julia</p><h1 id="The-Problem"><a class="docs-heading-anchor" href="#The-Problem">The Problem</a><a id="The-Problem-1"></a><a class="docs-heading-anchor-permalink" href="#The-Problem" title="Permalink"></a></h1><p>Suppose the linear regression model is </p><p class="math-container">\[
-y = \beta_0 + \beta_1 x^* + \varepsilon
-$$
-
-where $y$ is n-vector of the response variable, $\beta_0$ and $\beta_1$ are unknown regression parameteres, $\varepsilon$ is the iid. error term, $x^*$ is the unknown n-vector of the independent variable, and $n$ is the number of observations.
-
-We call $x^*$ unknown because in some situations the true values of the variable cannot be visible or directly observable, or observable with some measurement error. Now suppose that $x$ is the observable version of the true values and it is defined as 
-
-$$
-x = x^* + \delta
-$$
-
-where $\delta$ is the measurement error and $x$ is the erroneous version of the true $x^*$. If the estimated model is 
-
-$$
-\hat{y} = \hat{\beta_0} + \hat{\beta_1}x 
-$$
-
-then the ordinary least squares (OLS) estimates are no longer unbiased and even consistent. 
-
-Eive-cga is an estimator devised for this problem. The aim is to reduce the errors-in-variable bias with some cost of increasing the variance. At the end, the estimator obtains lower Mean Square Error (MSE) values defined as
-
-$$
-MSE(\hat{\beta_1}) = Var(\hat{\beta_1}) + Bias^2(\hat{\beta_1})
-$$
-
-for the Eive-cga estimator. For more detailed comparisons, see the original paper given in the Citation part. 
-
-# Usage 
-
-For the single variable case 
-
-```Julia 
-julia&gt; eive(dirtyx = dirtyx, y = y, otherx = nothing) 
-```
-
-and for the multiple regression 
-
-```Julia 
-julia&gt; eive(dirtyx = dirtyx, y = y, otherx = matrixofotherx) 
-```
-
-Note that the method assumes there is only one erroneous variable in the set of independent variables.
-
-# Example 
-
-Lets generate data from the model $y = 20 + 10x^* + \varepsilon$
-
-```julia
-import Random
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>ErrorsInVariables.jl · Errors-in-variables estimation using Compact Genetic Algorithms in Julia</title><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="estimator/">Errors-in-variables estimation using Compact Genetic Algorithms in Julia</a></span></div><form class="docs-search" action="search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="estimator/">The Estimator</a></li><li><a class="tocitem" href="cga/">CGA</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>ErrorsInVariables.jl</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>ErrorsInVariables.jl</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/jbytecode/ErrorsInVariables.jl/blob/main/docs/src/index.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><p><a href="https://jbytecode.github.io/ErrorsInVariables.jl/"><img src="https://img.shields.io/badge/docs-dev-blue.svg" alt="Doc"/></a> <a href="https://codecov.io/gh/jbytecode/eive.jl"><img src="https://codecov.io/gh/jbytecode/eive.jl/branch/main/graph/badge.svg?token=KMF7H1DS01" alt="codecov"/></a></p><h1 id="ErrorsInVariables.jl"><a class="docs-heading-anchor" href="#ErrorsInVariables.jl">ErrorsInVariables.jl</a><a id="ErrorsInVariables.jl-1"></a><a class="docs-heading-anchor-permalink" href="#ErrorsInVariables.jl" title="Permalink"></a></h1><p>Error-in-variables estimation using Compact Genetic Algorithms in Julia</p><h1 id="Usage"><a class="docs-heading-anchor" href="#Usage">Usage</a><a id="Usage-1"></a><a class="docs-heading-anchor-permalink" href="#Usage" title="Permalink"></a></h1><p>For the single variable case </p><pre><code class="language-Julia hljs">julia&gt; eive(dirtyx = dirtyx, y = y, otherx = nothing) </code></pre><p>and for the multiple regression </p><pre><code class="language-Julia hljs">julia&gt; eive(dirtyx = dirtyx, y = y, otherx = matrixofotherx) </code></pre><p>Note that the method assumes there is only one erroneous variable in the set of independent variables.</p><h1 id="Example"><a class="docs-heading-anchor" href="#Example">Example</a><a id="Example-1"></a><a class="docs-heading-anchor-permalink" href="#Example" title="Permalink"></a></h1><p>Lets generate data from the model <span>$y = 20 + 10x^* + \varepsilon$</span></p><pre><code class="language-julia hljs">import Random
 using ErrorsInVariables
 
 rng = Random.MersenneTwister(1234)
@@ -58,18 +9,7 @@ cleanx = randn(rng, n) * sqrt(7.0)
 e = randn(rng, n) * sqrt(5.0)
 y = 20.0 .+ 10.0 .* cleanx .+ e
 dirtyx = cleanx
-```
-
-and assume that 
-
-$$
-x^*
-$$ 
-
-is unobservable and it is observed as 
-
-$$
-x = x^* + \delta\]</p><p>. We can calculate an unbiased estimate of the slope parameter using </p><pre><code class="language-Julia hljs">eive(dirtyx = dirtyx, y = y, otherx = nothing) </code></pre><p>The result is </p><pre><code class="language-Julia hljs">EiveResult([20.28458307772922, 9.456757289676714])</code></pre><p>whereas OLS estimates are</p><pre><code class="language-Julia hljs">julia&gt; X = hcat(ones(n), dirtyx);
+eive(dirtyx = dirtyx, y = y, otherx = nothing) </code></pre><p>The result is </p><pre><code class="language-Julia hljs">EiveResult([20.28458307772922, 9.456757289676714])</code></pre><p>whereas OLS estimates are</p><pre><code class="language-Julia hljs">julia&gt; X = hcat(ones(n), dirtyx);
 
 julia&gt; X \ y
 2-element Vector{Float64}:
@@ -83,4 +23,4 @@ julia&gt; X \ y
   pages={3216--3235},
   year={2015},
   publisher={Taylor \&amp; Francis}
-}</code></pre></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Saturday 3 September 2022 20:17">Saturday 3 September 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+}</code></pre></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Saturday 3 September 2022 20:30">Saturday 3 September 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
