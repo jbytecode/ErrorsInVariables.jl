@@ -74,7 +74,7 @@ $$
 x^*
 $$ 
 
-is unobservable and it $x$ is observed as 
+is unobservable and it is observed as 
 
 $$
 x = x^* + \delta$$
