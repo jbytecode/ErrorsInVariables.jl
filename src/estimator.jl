@@ -5,6 +5,7 @@ export EiveResult
 
 
 import ..CGA: cga
+import Random: AbstractRNG, MersenneTwister
 
 struct EiveResult
     betas::Vector{Float64}
@@ -16,12 +17,13 @@ function eive(;
     otherx::Union{Nothing,Array{T,2},Array{T,1}},
     popsize::Int = 50,
     numdummies::Int = 10,
+    rng::AbstractRNG = MersenneTwister(1234)
 )::EiveResult where {T<:Real}
 
     if isnothing(otherx)
-        eivewithoutotherx(dirtyx, y, popsize, numdummies)
+        eivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
     else
-        return eivewithotherx(dirtyx, y, otherx, popsize, numdummies)
+        return eivewithotherx(dirtyx, y, otherx, popsize, numdummies, rng)
     end
 end
 
@@ -31,6 +33,7 @@ function eivewithotherx(
     otherx::Union{Array{T,2},Array{T,1}},
     popsize::Int = 50,
     numdummies::Int = 10,
+    rng::AbstractRNG = MersenneTwister(1234)
 )::EiveResult where {T<:Real}
 
 
@@ -51,7 +54,7 @@ function eivewithotherx(
         return sum(res .^ 2.0)
     end
 
-    finalbits = cga(chsize = chsize, costfunction = costfn, popsize = popsize)
+    finalbits = cga(chsize = chsize, costfunction = costfn, popsize = popsize, rng = rng)
 
     auxX = reshape(finalbits, n, numdummies)
     betas = auxX \ dirtyx
@@ -70,6 +73,7 @@ function eivewithoutotherx(
     y::Array{T,1},
     popsize::Int = 50,
     numdummies::Int = 10,
+    rng::AbstractRNG = MersenneTwister(1234)
 )::EiveResult where {T<:Real}
 
 
@@ -90,7 +94,7 @@ function eivewithoutotherx(
         return sum(res .^ 2.0)
     end
 
-    finalbits = cga(chsize = chsize, costfunction = costfn, popsize = popsize)
+    finalbits = cga(chsize = chsize, costfunction = costfn, popsize = popsize, rng = rng)
 
     auxX = reshape(finalbits, n, numdummies)
     betas = auxX \ dirtyx

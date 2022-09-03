@@ -1,5 +1,7 @@
 module CGA
 
+import Random: AbstractRNG, MersenneTwister
+
 """
 Generates a binary array of values using a probability vector.
 Each single element of the probability vector is the probability of bit having 
@@ -32,10 +34,10 @@ julia> cgasample(ones(10) * 0.5)
  0
 ```
 """
-function cgasample(probvector::Array{T,1})::Array{Int} where {T<:Real}
+function cgasample(probvector::Array{T,1}, rng::AbstractRNG)::Array{Int} where {T<:Real}
     len = length(probvector)
     ch = Array{Bool}(undef, len)
-    rands = rand(Float64, len)
+    rands = rand(rng, Float64, len)
     @inbounds for i in eachindex(ch)
         ch[i] = Int(rands[i] < probvector[i])
     end
@@ -69,12 +71,12 @@ julia> cga(chsize = 10, costfunction = f, popsize = 100)
  0
 ```
 """
-function cga(; chsize::Int, costfunction::Function, popsize::Int)::Array{Bool,1}
+function cga(; chsize::Int, costfunction::Function, popsize::Int, rng::AbstractRNG = MersenneTwister(0))::Array{Bool,1}
     probvector = ones(Float64, chsize) * 0.5
     mutation = 1.0 / convert(Float64, popsize)
     while !(all(x -> (x <= mutation) || (x >= 1.0 - mutation), probvector))
-        ch1 = cgasample(probvector)
-        ch2 = cgasample(probvector)
+        ch1 = cgasample(probvector, rng)
+        ch2 = cgasample(probvector, rng)
         cost1 = costfunction(ch1)
         cost2 = costfunction(ch2)
         winner = ch1
@@ -93,7 +95,7 @@ function cga(; chsize::Int, costfunction::Function, popsize::Int)::Array{Bool,1}
             end
         end
     end
-    return cgasample(probvector)
+    return cgasample(probvector, rng)
 end
 
 end # End of module
