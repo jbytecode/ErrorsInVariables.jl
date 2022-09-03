@@ -4,37 +4,6 @@
 # ErrorsInVariables.jl
 Error-in-variables estimation using Compact Genetic Algorithms in Julia
 
-# The Problem 
-
-Suppose the linear regression model is 
-
-$$
-y = \beta_0 + \beta_1 x^* + \varepsilon
-$$
-
-where $y$ is n-vector of the response variable, $\beta_0$ and $\beta_1$ are unknown regression parameteres, $\varepsilon$ is the iid. error term, $x^*$ is the unknown n-vector of the independent variable, and $n$ is the number of observations.
-
-We call $x^*$ unknown because in some situations the true values of the variable cannot be visible or directly observable, or observable with some measurement error. Now suppose that $x$ is the observable version of the true values and it is defined as 
-
-$$
-x = x^* + \delta
-$$
-
-where $\delta$ is the measurement error and $x$ is the erroneous version of the true $x^*$. If the estimated model is 
-
-$$
-\hat{y} = \hat{\beta_0} + \hat{\beta_1}x 
-$$
-
-then the ordinary least squares (OLS) estimates are no longer unbiased and even consistent. 
-
-Eive-cga is an estimator devised for this problem. The aim is to reduce the errors-in-variable bias with some cost of increasing the variance. At the end, the estimator obtains lower Mean Square Error (MSE) values defined as
-
-$$
-MSE(\hat{\beta_1}) = Var(\hat{\beta_1}) + Bias^2(\hat{\beta_1})
-$$
-
-for the Eive-cga estimator. For more detailed comparisons, see the original paper given in the Citation part. 
 
 # Usage 
 
@@ -67,23 +36,6 @@ cleanx = randn(rng, n) * sqrt(7.0)
 e = randn(rng, n) * sqrt(5.0)
 y = 20.0 .+ 10.0 .* cleanx .+ e
 dirtyx = cleanx
-```
-
-and assume that 
-
-$$
-x^*
-$$ 
-
-is unobservable and it is observed as 
-
-$$
-x = x^* + \delta$$
-
-. We can calculate an unbiased estimate of the slope parameter using 
-
-
-```Julia 
 eive(dirtyx = dirtyx, y = y, otherx = nothing) 
 ```
 

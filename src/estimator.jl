@@ -11,6 +11,48 @@ struct EiveResult
     betas::Vector{Float64}
 end
 
+"""
+    eive(;
+    dirtyx::Array{T,1},
+    y::Array{T,1},
+    otherx::Union{Nothing,Array{T,2},Array{T,1}},
+    popsize::Int = 50,
+    numdummies::Int = 10,
+    rng::AbstractRNG = MersenneTwister(1234)
+)::EiveResult where {T<:Real}
+
+dirtyx: Independent variable measured with some error
+y: Dependent variable
+otherx: Matrix of other independent variables
+popsize: Number of individuals in the population (optional)
+numdummies: Number of dummy variables to use (optional)
+rng: Random number generator (optional)
+
+# Example 
+
+```julia
+julia> import Random
+julia> using ErrorsInVariables
+julia> rng = Random.MersenneTwister(1234)
+julia> n = 30
+julia> deltax = randn(rng, n) * sqrt(3.0)
+julia> cleanx = randn(rng, n) * sqrt(7.0)
+julia> e = randn(rng, n) * sqrt(5.0)
+julia> y = 20.0 .+ 10.0 .* cleanx .+ e
+julia> dirtyx = cleanx
+julia> eive(dirtyx = dirtyx, y = y, otherx = nothing) 
+
+EiveResult([20.28458307772922, 9.456757289676714])
+
+julia> X = hcat(ones(n), dirtyx);
+
+julia> # Biased OLS estimates:
+julia> X \ y
+2-element Vector{Float64}:
+ 17.94867860059858
+  5.8099584879737876
+```
+"""
 function eive(;
     dirtyx::Array{T,1},
     y::Array{T,1},
@@ -26,6 +68,7 @@ function eive(;
         return eivewithotherx(dirtyx, y, otherx, popsize, numdummies, rng)
     end
 end
+
 
 function eivewithotherx(
     dirtyx::Array{T,1},
