@@ -5,15 +5,16 @@ include("estimator.jl")
 
 
 
-export CGA 
-export Estimator 
+export CGA
+export Estimator
 
-import .Estimator: eive 
-import .CGA: cga, cgasample 
+import .Estimator: eive, EiveResult
+import .CGA: cga, cgasample
 
 
 
 export eive
+export EiveResult
 export cga
 export cgasample
 

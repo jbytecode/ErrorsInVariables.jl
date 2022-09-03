@@ -1,6 +1,6 @@
 using Test
-using Eive 
- 
+using Eive
+
 
 @testset "sample" begin
     @testset "sample full of ones" begin
@@ -15,11 +15,11 @@ using Eive
         smp = cgasample([0.5, 0.5, 0.5, 0.5, 0.5])
         for element in smp
             @test (element >= 0.0) || (element <= 1.0)
-        end 
+        end
     end
 end
 
-@testset "cga" begin 
+@testset "cga" begin
     function f(bits)
         return sum(bits)
     end
@@ -29,4 +29,4 @@ end
     for element in result
         @test element == 0
     end
-end 
+end
