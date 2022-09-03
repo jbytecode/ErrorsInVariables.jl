@@ -21,6 +21,8 @@ end
     rng::AbstractRNG = MersenneTwister(1234)
 )::EiveResult where {T<:Real}
 
+# Arguments:
+
 dirtyx: Independent variable measured with some error
 y: Dependent variable
 otherx: Matrix of other independent variables
@@ -28,9 +30,9 @@ popsize: Number of individuals in the population (optional)
 numdummies: Number of dummy variables to use (optional)
 rng: Random number generator (optional)
 
-# Example 
+# Examples
 
-```julia
+```julia-repl
 julia> import Random
 julia> using ErrorsInVariables
 julia> rng = Random.MersenneTwister(1234)
@@ -47,11 +49,18 @@ EiveResult([20.28458307772922, 9.456757289676714])
 julia> X = hcat(ones(n), dirtyx);
 
 julia> # Biased OLS estimates:
-julia> X \ y
+julia> X \\ y
 2-element Vector{Float64}:
  17.94867860059858
   5.8099584879737876
 ```
+
+# References 
+
+Satman, M. Hakan, and Erkin Diyarbakirlioglu. "Reducing errors-in-variables bias in linear 
+regression using compact genetic algorithms." Journal of Statistical Computation and Simulation
+ 85.16 (2015): 3216-3235.
+
 """
 function eive(;
     dirtyx::Array{T,1},
