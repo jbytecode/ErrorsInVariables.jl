@@ -1,5 +1,5 @@
 using Test
-using Eives
+using ErrorsInVariables
 
 
 @testset "sample" begin

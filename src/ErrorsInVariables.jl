@@ -1,4 +1,4 @@
-module Eives
+module ErrorsInVariables
 
 include("cga.jl")
 include("estimator.jl")
@@ -8,13 +8,13 @@ include("estimator.jl")
 export CGA
 export Estimator
 
-import .Estimator: eives, EivesResult
+import .Estimator: eive, EiveResult
 import .CGA: cga, cgasample
 
 
 
-export eives
-export EivesResult
+export eive
+export EiveResult
 export cga
 export cgasample
 

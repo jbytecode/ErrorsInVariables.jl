@@ -1,37 +1,37 @@
 module Estimator
 
-export eives
-export EivesResult
+export eive
+export EiveResult
 
 
 import ..CGA: cga
 
-struct EivesResult
+struct EiveResult
     betas::Vector{Float64}
 end
 
-function eives(;
+function eive(;
     dirtyx::Array{T,1},
     y::Array{T,1},
     otherx::Union{Nothing,Array{T,2},Array{T,1}},
     popsize::Int = 50,
     numdummies::Int = 10,
-)::EivesResult where {T<:Real}
+)::EiveResult where {T<:Real}
 
     if isnothing(otherx)
-        eiveswithoutotherx(dirtyx, y, popsize, numdummies)
+        eivewithoutotherx(dirtyx, y, popsize, numdummies)
     else
-        return eiveswithotherx(dirtyx, y, otherx, popsize, numdummies)
+        return eivewithotherx(dirtyx, y, otherx, popsize, numdummies)
     end
 end
 
-function eiveswithotherx(
+function eivewithotherx(
     dirtyx::Array{T,1},
     y::Array{T,1},
     otherx::Union{Array{T,2},Array{T,1}},
     popsize::Int = 50,
     numdummies::Int = 10,
-)::EivesResult where {T<:Real}
+)::EiveResult where {T<:Real}
 
 
     n = length(dirtyx)
@@ -61,16 +61,16 @@ function eiveswithotherx(
 
     outerbetas = X \ y
 
-    return EivesResult(outerbetas)
+    return EiveResult(outerbetas)
 end
 
 
-function eiveswithoutotherx(
+function eivewithoutotherx(
     dirtyx::Array{T,1},
     y::Array{T,1},
     popsize::Int = 50,
     numdummies::Int = 10,
-)::EivesResult where {T<:Real}
+)::EiveResult where {T<:Real}
 
 
     n = length(dirtyx)
@@ -100,7 +100,7 @@ function eiveswithoutotherx(
 
     outerbetas = X \ y
 
-    return EivesResult(outerbetas)
+    return EiveResult(outerbetas)
 end
 
 
