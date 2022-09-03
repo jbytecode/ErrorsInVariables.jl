@@ -1,3 +1,4 @@
+[![Doc](https://img.shields.io/badge/docs-dev-blue.svg)](https://jbytecode.github.io/ErrorsInVariables.jl/)
 [![codecov](https://codecov.io/gh/jbytecode/eive.jl/branch/main/graph/badge.svg?token=KMF7H1DS01)](https://codecov.io/gh/jbytecode/eive.jl)
 
 # ErrorsInVariables.jl
