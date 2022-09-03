@@ -1,5 +1,5 @@
 using Test
-using Eive
+using Eives
 
 
 @testset "sample" begin

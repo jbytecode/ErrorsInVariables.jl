@@ -1,6 +1,6 @@
 [![codecov](https://codecov.io/gh/jbytecode/eive.jl/branch/main/graph/badge.svg?token=KMF7H1DS01)](https://codecov.io/gh/jbytecode/eive.jl)
 
-# eive.jl
+# Eives.jl
 Error-in-variables estimation using Compact Genetic Algorithms in Julia
 
 # The Problem 

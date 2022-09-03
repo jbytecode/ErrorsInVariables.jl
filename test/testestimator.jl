@@ -1,5 +1,5 @@
 using Test
-using Eive
+using Eives
 import Random
 
 function euclidean(v1::Vector, v2::Vector)
@@ -28,13 +28,13 @@ end
     dirtybetas = Xd \ y
     cleanbetas = Xc \ y
 
-    result = eive(dirtyx = dirtyx, y = y, otherx = nothing, popsize = 100, numdummies = 10)
+    result = eives(dirtyx = dirtyx, y = y, otherx = nothing, popsize = 100, numdummies = 10)
 
     dist_clean_and_real = euclidean(cleanbetas, [20.0, 10.0])
     dist_dirty_and_real = euclidean(dirtybetas, [20.0, 10.0])
     dist_eive_and_real = euclidean(result.betas, [20.0, 10.0])
 
-    @test result isa EiveResult
+    @test result isa EivesResult
     @test dist_clean_and_real < dist_dirty_and_real
     @test dist_eive_and_real < dist_dirty_and_real
 
@@ -65,13 +65,13 @@ end
     dirtybetas = Xd \ y
     cleanbetas = Xc \ y
 
-    result = eive(dirtyx = dirtyx, y = y, otherx = cleanx2, popsize = 100, numdummies = 10)
+    result = eives(dirtyx = dirtyx, y = y, otherx = cleanx2, popsize = 100, numdummies = 10)
 
     dist_clean_and_real = euclidean(cleanbetas, [20.0, 10.0, 15.0])
     dist_dirty_and_real = euclidean(dirtybetas, [20.0, 10.0, 15.0])
     dist_eive_and_real = euclidean(result.betas, [20.0, 10.0, 15.0])
 
-    @test result isa EiveResult
+    @test result isa EivesResult
     @test dist_clean_and_real < dist_dirty_and_real
     @test dist_eive_and_real < dist_dirty_and_real
 
@@ -103,7 +103,7 @@ end
     dirtybetas = Xd \ y
     cleanbetas = Xc \ y
 
-    result = eive(
+    result = eives(
         dirtyx = dirtyx,
         y = y,
         otherx = hcat(cleanx2, cleanx3),
@@ -115,7 +115,7 @@ end
     dist_dirty_and_real = euclidean(dirtybetas, [20.0, 10.0, 15.0, 13.0])
     dist_eive_and_real = euclidean(result.betas, [20.0, 10.0, 15.0, 13.0])
 
-    @test result isa EiveResult
+    @test result isa EivesResult
     @test dist_clean_and_real < dist_dirty_and_real
     @test dist_eive_and_real < dist_dirty_and_real
 

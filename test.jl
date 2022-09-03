@@ -1,4 +1,4 @@
-using Eive 
+using Eives 
 
 
 n = 500
@@ -20,6 +20,6 @@ Xd = hcat(ones(n), dirtyx, otherx)
 println("Dirty Regression:")
 println(Xd \ y)
 
-println("EIVE Regression")
-result = eive(dirtyx, y, otherx)
+println("EIVES Regression")
+result = eives(dirtyx, y, otherx)
 println(result)
