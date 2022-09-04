@@ -23,12 +23,12 @@ end
 
 # Arguments:
 
-dirtyx: Independent variable measured with some error
-y: Dependent variable
-otherx: Matrix of other independent variables
-popsize: Number of individuals in the population (optional)
-numdummies: Number of dummy variables to use (optional)
-rng: Random number generator (optional)
+- dirtyx: Independent variable measured with some error
+- y: Dependent variable
+- otherx: Matrix of other independent variables
+- popsize: Number of individuals in the population (optional)
+- numdummies: Number of dummy variables to use (optional)
+- rng: Random number generator (optional)
 
 # Examples
 
