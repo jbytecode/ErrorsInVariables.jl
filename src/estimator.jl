@@ -21,6 +21,12 @@ end
     rng::AbstractRNG = MersenneTwister(1234)
 )::EiveResult where {T<:Real}
 
+# Description:
+The method searches for a set of dummy (binary) variables that separates the erroneous independent variable
+into clean part and error part. The clean part is then used in the main regression estimation. 
+Those dummy variables minimize the sum of squares of residuals of the main regression. In other terms
+the methods searches for a set of proxy variables that do not exist in real. Please see the reference for details.  
+
 # Arguments:
 
 - dirtyx: Independent variable measured with some error
