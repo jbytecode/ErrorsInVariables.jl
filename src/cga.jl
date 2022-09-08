@@ -71,7 +71,12 @@ julia> cga(chsize = 10, costfunction = f, popsize = 100)
  0
 ```
 """
-function cga(; chsize::Int, costfunction::Function, popsize::Int, rng::AbstractRNG = MersenneTwister(0))::Array{Bool,1}
+function cga(;
+    chsize::Int,
+    costfunction::Function,
+    popsize::Int,
+    rng::AbstractRNG = MersenneTwister(0),
+)::Array{Bool,1}
     probvector = ones(Float64, chsize) * 0.5
     mutation = 1.0 / convert(Float64, popsize)
     while !(all(x -> (x <= mutation) || (x >= 1.0 - mutation), probvector))

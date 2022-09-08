@@ -70,12 +70,13 @@ regression using compact genetic algorithms." Journal of Statistical Computation
 
 """
 function meive(;
-    dirtyx::Array{T, 1},
-    y::Array{T, 2},
+    dirtyx::Array{T,1},
+    y::Array{T,2},
     otherx::Union{Nothing,Array{T,2},Array{T,1}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234))::EiveResult where {T<:Real}
+    rng::AbstractRNG = MersenneTwister(1234),
+)::EiveResult where {T<:Real}
 
     if isnothing(otherx)
         return meivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
@@ -85,7 +86,14 @@ function meive(;
 end
 
 
-function meivewithotherx(dirtyx::Array{T,1},y::Array{T,2}, otherx::Union{Array{T,2},Array{T,1}}, popsize::Int = 50, numdummies::Int = 10, rng::AbstractRNG = MersenneTwister(1234))::EiveResult where {T<:Real}
+function meivewithotherx(
+    dirtyx::Array{T,1},
+    y::Array{T,2},
+    otherx::Union{Array{T,2},Array{T,1}},
+    popsize::Int = 50,
+    numdummies::Int = 10,
+    rng::AbstractRNG = MersenneTwister(1234),
+)::EiveResult where {T<:Real}
 
 
     n = length(dirtyx)
@@ -100,14 +108,14 @@ function meivewithotherx(dirtyx::Array{T,1},y::Array{T,2}, otherx::Union{Array{T
 
         X = hcat(myones, cleanX, otherx)
 
-        _ , np = size(y)
+        _, np = size(y)
         totalres = 0.0
-        for i in 1:np
+        for i = 1:np
             currenty = y[:, i]
             outerbetas = X \ currenty
             res = currenty .- X * outerbetas
-            totalres += sum(res .^ 2.0) 
-        end 
+            totalres += sum(res .^ 2.0)
+        end
         return totalres
     end
 
@@ -119,13 +127,19 @@ function meivewithotherx(dirtyx::Array{T,1},y::Array{T,2}, otherx::Union{Array{T
 
     X = hcat(myones, cleanX, otherx)
 
-    outerbetas = X \ y[:,1]
+    outerbetas = X \ y[:, 1]
 
     return EiveResult(outerbetas)
 end
 
 
-function meivewithoutotherx(dirtyx::Array{T,1},y::Array{T,2},popsize::Int = 50,numdummies::Int = 10,rng::AbstractRNG = MersenneTwister(1234))::EiveResult where {T<:Real}
+function meivewithoutotherx(
+    dirtyx::Array{T,1},
+    y::Array{T,2},
+    popsize::Int = 50,
+    numdummies::Int = 10,
+    rng::AbstractRNG = MersenneTwister(1234),
+)::EiveResult where {T<:Real}
 
     n = length(dirtyx)
     myones = ones(Float64, n)
@@ -139,14 +153,14 @@ function meivewithoutotherx(dirtyx::Array{T,1},y::Array{T,2},popsize::Int = 50,n
 
         X = hcat(myones, cleanX)
 
-        _ , np = size(y)
+        _, np = size(y)
         totalres = 0.0
-        for i in 1:np
+        for i = 1:np
             currenty = y[:, i]
             outerbetas = X \ currenty
             res = currenty .- X * outerbetas
             totalres += sum(res .^ 2.0)
-        end 
+        end
         return totalres
     end
 

@@ -25,8 +25,14 @@ import Random
     dirtybetas = Xd \ y1
     cleanbetas = Xc \ y1
 
-    result = meive(dirtyx = dirtyx, y = hcat(y1, y2), otherx = nothing, popsize = 100, numdummies = 10)
-    
+    result = meive(
+        dirtyx = dirtyx,
+        y = hcat(y1, y2),
+        otherx = nothing,
+        popsize = 100,
+        numdummies = 10,
+    )
+
     dist_clean_and_real = euclidean(cleanbetas, [20.0, 10.0])
     dist_dirty_and_real = euclidean(dirtybetas, [20.0, 10.0])
     dist_eive_and_real = euclidean(result.betas, [20.0, 10.0])

@@ -1,4 +1,10 @@
-# v0.1.1 (Upcoming release)
+# v0.1.2 (Upcoming release)
+
+- Update documentation
+
+
+
+# v0.1.1
 
 - Add multivariate case (more than one response variables for additional info)
 - Add basic documentation 

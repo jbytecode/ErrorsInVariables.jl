@@ -10,6 +10,7 @@ makedocs(
          authors = "Mehmet Hakan Satman",
          pages = [
                   "The Estimator" => "estimator.md",
+                  "Multivariate Case" => "multivariate.md",
                   "CGA" => "cga.md"
                  ]
         )

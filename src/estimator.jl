@@ -74,7 +74,7 @@ function eive(;
     otherx::Union{Nothing,Array{T,2},Array{T,1}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234)
+    rng::AbstractRNG = MersenneTwister(1234),
 )::EiveResult where {T<:Real}
 
     if isnothing(otherx)
@@ -91,7 +91,8 @@ function eivewithotherx(
     otherx::Union{Array{T,2},Array{T,1}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234))::EiveResult where {T<:Real}
+    rng::AbstractRNG = MersenneTwister(1234)
+)::EiveResult where {T<:Real}
 
 
     n = length(dirtyx)
