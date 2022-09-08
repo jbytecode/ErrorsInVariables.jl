@@ -2,10 +2,6 @@ using Test
 using ErrorsInVariables
 import Random
 
-function euclidean(v1::Vector, v2::Vector)
-    (v1 .- v2) .^ 2.0 |> sum |> sqrt
-end
-
 
 @testset "Simple Model" begin
 
