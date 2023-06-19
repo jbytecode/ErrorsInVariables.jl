@@ -66,7 +66,7 @@ deltax = randn(rng, n) * sqrt(3.0)
 cleanx = randn(rng, n) * sqrt(7.0)
 e = randn(rng, n) * sqrt(5.0)
 y = 20.0 .+ 10.0 .* cleanx .+ e
-dirtyx = cleanx
+dirtyx = cleanx + deltax
 ```
 
 and assume that 
