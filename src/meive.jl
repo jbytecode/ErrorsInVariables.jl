@@ -10,13 +10,13 @@ import Random: AbstractRNG, MersenneTwister
 
 """
     eive(;
-    dirtyx::Array{T, 1},
-    y::Array{T, 2},
-    otherx::Union{Nothing,Array{T,2},Array{T,1}},
+    dirtyx::Vector{T},
+    y::Matrix{T},
+    otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234)
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234)
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 # Description:
 This is the multivariate case of eive(). Please see eive() function. 
@@ -70,13 +70,13 @@ regression using compact genetic algorithms." Journal of Statistical Computation
 
 """
 function meive(;
-    dirtyx::Array{T,1},
-    y::Array{T,2},
-    otherx::Union{Nothing,Array{T,2},Array{T,1}},
+    dirtyx::Vector{T},
+    y::Matrix{T},
+    otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234),
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234),
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
     if isnothing(otherx)
         return meivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
@@ -87,13 +87,13 @@ end
 
 
 function meivewithotherx(
-    dirtyx::Array{T,1},
-    y::Array{T,2},
-    otherx::Union{Array{T,2},Array{T,1}},
+    dirtyx::Vector{T},
+    y::Matrix{T},
+    otherx::Union{Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234),
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234),
+)::EiveResult where {T<:Real, RNGType <: AbstractRNG}
 
 
     n = length(dirtyx)
@@ -101,7 +101,7 @@ function meivewithotherx(
     chsize = n * numdummies
 
 
-    function costfn(bits::Array{Int,1})
+    function costfn(bits::Vector{Int})::Float64
         auxX = reshape(bits, n, numdummies)
         betas = auxX \ dirtyx
         cleanX = auxX * betas
@@ -134,19 +134,19 @@ end
 
 
 function meivewithoutotherx(
-    dirtyx::Array{T,1},
-    y::Array{T,2},
+    dirtyx::Vector{T},
+    y::Matrix{T},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234),
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234),
+)::EiveResult where {T<:Real, RNGType <: AbstractRNG}
 
     n = length(dirtyx)
     myones = ones(Float64, n)
     chsize = n * numdummies
 
 
-    function costfn(bits::Array{Int,1})
+    function costfn(bits::Vector{Int})::Float64
         auxX = reshape(bits, n, numdummies)
         betas = auxX \ dirtyx
         cleanX = auxX * betas

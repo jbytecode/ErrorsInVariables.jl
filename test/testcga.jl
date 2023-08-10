@@ -23,6 +23,14 @@ import Random: MersenneTwister
     end
 end
 
+@testset "converged" begin 
+    @test converged([1.0, 1.0, 0.0]) == true 
+    @test converged([1.0, 1.0, 1.0]) == true 
+    @test converged([0.0, 1.0, 0.0]) == true 
+    @test converged([0.0, 0.0, 0.0]) == true 
+    @test converged([1.0, 1.0, 0.1]) == false
+end 
+
 @testset "cga" begin
     function f(bits)
         return sum(bits)

@@ -1,6 +1,8 @@
 # v0.1.2 (Upcoming release)
 
 - Update documentation
+- Refactor the optimizer
+- Redefine types
 
 
 

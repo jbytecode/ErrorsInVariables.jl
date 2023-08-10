@@ -11,7 +11,7 @@ export Estimator
 
 import .Estimator: eive, EiveResult
 import .Eivem: meive
-import .CGA: cga, cgasample
+import .CGA: cga, cgasample, converged 
 
 
 
@@ -20,6 +20,7 @@ export meive
 export EiveResult
 export cga
 export cgasample
+export converged 
 
 
 end # module

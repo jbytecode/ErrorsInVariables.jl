@@ -13,13 +13,13 @@ end
 
 """
     eive(;
-    dirtyx::Array{T,1},
-    y::Array{T,1},
-    otherx::Union{Nothing,Array{T,2},Array{T,1}},
+    dirtyx::Vector{T},
+    y::Vector{T},
+    otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234)
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234)
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 # Description:
 The method searches for a set of dummy (binary) variables that separates the erroneous independent variable
@@ -69,13 +69,13 @@ regression using compact genetic algorithms." Journal of Statistical Computation
 
 """
 function eive(;
-    dirtyx::Array{T,1},
-    y::Array{T,1},
-    otherx::Union{Nothing,Array{T,2},Array{T,1}},
+    dirtyx::Vector{T},
+    y::Vector{T},
+    otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234),
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234),
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
     if isnothing(otherx)
         return eivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
@@ -86,21 +86,23 @@ end
 
 
 function eivewithotherx(
-    dirtyx::Array{T,1},
-    y::Array{T,1},
-    otherx::Union{Array{T,2},Array{T,1}},
+    dirtyx::Vector{T},
+    y::Vector{T},
+    otherx::Union{Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234)
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234)
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 
     n = length(dirtyx)
+
     myones = ones(Float64, n)
+    
     chsize = n * numdummies
 
 
-    function costfn(bits::Array{Int,1})
+    function costfn(bits::Vector{Int})
         auxX = reshape(bits, n, numdummies)
         betas = auxX \ dirtyx
         cleanX = auxX * betas
@@ -109,6 +111,7 @@ function eivewithotherx(
 
         outerbetas = X \ y
         res = y .- X * outerbetas
+
         return sum(res .^ 2.0)
     end
 
@@ -127,20 +130,22 @@ end
 
 
 function eivewithoutotherx(
-    dirtyx::Array{T,1},
-    y::Array{T,1},
+    dirtyx::Vector{T},
+    y::Vector{T},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::AbstractRNG = MersenneTwister(1234)
-)::EiveResult where {T<:Real}
+    rng::RNGType = MersenneTwister(1234)
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 
     n = length(dirtyx)
+
     myones = ones(Float64, n)
+    
     chsize = n * numdummies
 
 
-    function costfn(bits::Array{Int,1})
+    function costfn(bits::Vector{Int})
         auxX = reshape(bits, n, numdummies)
         betas = auxX \ dirtyx
         cleanX = auxX * betas
