@@ -1,4 +1,7 @@
-# v0.1.2 (Upcoming release)
+# v0.1.3 (Upcoming release)
+
+
+# v0.1.2
 
 - Update documentation
 - Refactor the optimizer
