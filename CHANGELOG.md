@@ -1,5 +1,7 @@
 # v0.1.3 (Upcoming release)
 
+- Update documentation
+
 
 # v0.1.2
 
