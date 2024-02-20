@@ -85,6 +85,16 @@ function eive(;
 end
 
 
+"""
+    eivewithotherx(
+    dirtyx::Vector{T},
+    y::Vector{T},
+    otherx::Union{Matrix{T}, Vector{T}},
+    popsize::Int = 50,
+    numdummies::Int = 10,
+    rng::RNGType = MersenneTwister(1234)
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+"""
 function eivewithotherx(
     dirtyx::Vector{T},
     y::Vector{T},
@@ -129,6 +139,15 @@ function eivewithotherx(
 end
 
 
+"""
+    eivewithoutotherx(
+    dirtyx::Vector{T},
+    y::Vector{T},
+    popsize::Int = 50,
+    numdummies::Int = 10,
+    rng::RNGType = MersenneTwister(1234)
+)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+"""
 function eivewithoutotherx(
     dirtyx::Vector{T},
     y::Vector{T},
