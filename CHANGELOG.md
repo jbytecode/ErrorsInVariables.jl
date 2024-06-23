@@ -1,6 +1,11 @@
-# v0.1.3 (Upcoming release)
+# v0.1.4 (Upcoming Release)
+
+
+
+# v0.1.3
 
 - Update documentation
+- Add new reference to docstrings 
 
 
 # v0.1.2
