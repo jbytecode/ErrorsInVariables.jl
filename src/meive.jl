@@ -68,6 +68,10 @@ Satman, M. Hakan, and Erkin Diyarbakirlioglu. "Reducing errors-in-variables bias
 regression using compact genetic algorithms." Journal of Statistical Computation and Simulation
  85.16 (2015): 3216-3235.
 
+Satman, M. H., & Diyarbakırlıoğlu, E. (2024). A Solution to Errors-in-variables Bias in Multivariate 
+Linear Regression using Compact Genetic Algorithms. JOURNAL OF APPLIED MICROECONOMETRICS, 
+4(1), 31–64. https://doi.org/10.53753/jame.2293
+
 """
 function meive(;
     dirtyx::Vector{T},

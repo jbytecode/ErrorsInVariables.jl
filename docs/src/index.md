@@ -71,4 +71,15 @@ and clearly biased towards to zero.
   year={2015},
   publisher={Taylor \& Francis}
 }
+
+@article{Satman_Diyarbakirlioglu_2024, 
+title={A Solution to Errors-in-variables Bias in Multivariate Linear Regression using Compact Genetic Algorithms}, volume={4}, 
+url={https://journals.gen.tr/index.php/jame/article/view/2293}, 
+DOI={10.53753/jame.2293}, 
+number={1}, 
+journal={JOURNAL OF APPLIED MICROECONOMETRICS}, 
+author={Satman, Mehmet Hakan and Diyarbakırlıoğlu, Erkin}, 
+year={2024}, month={Jun.}, 
+pages={31–64} 
+}
 ```
