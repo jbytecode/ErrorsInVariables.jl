@@ -121,7 +121,8 @@ and clearly biased towards to zero.
 }
 
 @article{Satman_Diyarbakirlioglu_2024, 
-title={A Solution to Errors-in-variables Bias in Multivariate Linear Regression using Compact Genetic Algorithms}, volume={4}, 
+title={A Solution to Errors-in-variables Bias in Multivariate Linear Regression using Compact Genetic Algorithms},
+volume={4}, 
 url={https://journals.gen.tr/index.php/jame/article/view/2293}, 
 DOI={10.53753/jame.2293}, 
 number={1}, 
