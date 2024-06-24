@@ -1,5 +1,8 @@
-# v0.1.4 (Upcoming Release)
+# v0.1.5 (Upcoming Release)
 
+# v0.1.4
+
+- Implement orthogonal regression
 
 
 # v0.1.3
