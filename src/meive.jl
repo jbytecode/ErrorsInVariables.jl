@@ -15,8 +15,7 @@ import Random: AbstractRNG, MersenneTwister
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234)
-)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 # Description:
 This is the multivariate case of eive(). Please see eive() function. 
@@ -70,7 +69,7 @@ regression using compact genetic algorithms." Journal of Statistical Computation
 
 Satman, M. H., & Diyarbakırlıoğlu, E. (2024). A Solution to Errors-in-variables Bias in Multivariate 
 Linear Regression using Compact Genetic Algorithms. JOURNAL OF APPLIED MICROECONOMETRICS, 
-4(1), 31–64. https://doi.org/10.53753/jame.2293
+4(1), 31-64. https://doi.org/10.53753/jame.2293
 
 """
 function meive(;
@@ -79,8 +78,7 @@ function meive(;
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234),
-)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
     if isnothing(otherx)
         return meivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
@@ -106,8 +104,7 @@ function meivewithotherx(
     otherx::Union{Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234),
-)::EiveResult where {T<:Real, RNGType <: AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType <: AbstractRNG}
 
 
     n = length(dirtyx)
@@ -161,8 +158,7 @@ function meivewithoutotherx(
     y::Matrix{T},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234),
-)::EiveResult where {T<:Real, RNGType <: AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType <: AbstractRNG}
 
     n = length(dirtyx)
     myones = ones(Float64, n)

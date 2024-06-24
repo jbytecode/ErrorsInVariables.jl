@@ -19,8 +19,7 @@ end
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234)
-)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 # Description:
 The method searches for a set of dummy (binary) variables that separates the erroneous independent variable
@@ -75,8 +74,7 @@ function eive(;
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234),
-)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
     if isnothing(otherx)
         return eivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
@@ -102,8 +100,7 @@ function eivewithotherx(
     otherx::Union{Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234)
-)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 
     n = length(dirtyx)
@@ -146,16 +143,14 @@ end
     y::Vector{T},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234)
-)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 """
 function eivewithoutotherx(
     dirtyx::Vector{T},
     y::Vector{T},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234)
-)::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 
     n = length(dirtyx)

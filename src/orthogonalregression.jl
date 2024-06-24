@@ -9,7 +9,7 @@ import ..Estimator: EiveResult
 """
     orthogonal_regression(
         X::Matrix,
-        y::Vector,
+        y::Vector;
         xhasintercept::Bool=true,
         maxiterations::Int=10000,
         initialbetas::Union{Nothing, Vector} = nothing)::EiveResult
@@ -50,7 +50,7 @@ result = orthogonal_regression(X, y)
 - https://davegiles.blogspot.com/2014/11/orthogonal-regression-first-steps.html
 """
 function orthogonal_regression(X::Matrix,
-    y::Vector,
+    y::Vector;
     xhasintercept::Bool=true,
     maxiterations::Int=10000,
     initialbetas::Union{Nothing, Vector} = nothing)::EiveResult

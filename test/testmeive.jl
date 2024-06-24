@@ -3,6 +3,8 @@ using ErrorsInVariables
 import Random
 
 
+@testset "Multivariate CGA estimator" verbose = true begin 
+
 @testset "Multivariate case - 2 response" begin
     rng = Random.MersenneTwister(1234)
 
@@ -41,3 +43,6 @@ import Random
     @test dist_clean_and_real < dist_dirty_and_real
     @test dist_eive_and_real < dist_dirty_and_real
 end
+
+
+end 

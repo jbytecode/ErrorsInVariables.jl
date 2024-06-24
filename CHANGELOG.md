@@ -1,5 +1,7 @@
 # v0.1.5 (Upcoming Release)
 
+- Implement Deming Regression
+
 # v0.1.4
 
 - Implement orthogonal regression
