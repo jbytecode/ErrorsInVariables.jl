@@ -143,7 +143,7 @@ function meivewithotherx(
 
     outerbetas = X \ y[:, 1]
 
-    return EiveResult(outerbetas)
+    return EiveResult(outerbetas, true)
 end
 
 
@@ -197,7 +197,7 @@ function meivewithoutotherx(
 
     outerbetas = X \ y[:, 1]
 
-    return EiveResult(outerbetas)
+    return EiveResult(outerbetas, true)
 end
 
 

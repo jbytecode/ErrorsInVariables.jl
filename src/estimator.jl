@@ -9,6 +9,7 @@ import Random: AbstractRNG, MersenneTwister
 
 struct EiveResult
     betas::Vector{Float64}
+    converged::Bool
 end
 
 """
@@ -135,7 +136,7 @@ function eivewithotherx(
 
     outerbetas = X \ y
 
-    return EiveResult(outerbetas)
+    return EiveResult(outerbetas, true)
 end
 
 
@@ -186,7 +187,7 @@ function eivewithoutotherx(
 
     outerbetas = X \ y
 
-    return EiveResult(outerbetas)
+    return EiveResult(outerbetas, true)
 end
 
 
