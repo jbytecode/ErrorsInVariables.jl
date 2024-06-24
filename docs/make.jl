@@ -11,7 +11,8 @@ makedocs(
          pages = [
                   "The Estimator" => "estimator.md",
                   "Multivariate Case" => "multivariate.md",
-                  "CGA" => "cga.md"
+                  "CGA" => "cga.md", 
+                  "Orthogonal Regression" => "orthogonalregression.md",
                  ]
         )
 

@@ -9,3 +9,4 @@ end
 include("testcga.jl")
 include("testestimator.jl")
 include("testmeive.jl")
+include("testorthogonalregression.jl")
