@@ -1,4 +1,7 @@
-# v0.1.5 (Upcoming Release)
+# v0.1.6 (Upcoming Release)
+
+
+# v0.1.5 
 
 - Implement Deming Regression
 

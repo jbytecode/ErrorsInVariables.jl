@@ -2,7 +2,12 @@
 [![codecov](https://codecov.io/gh/jbytecode/eive.jl/branch/main/graph/badge.svg?token=KMF7H1DS01)](https://codecov.io/gh/jbytecode/eive.jl)
 
 # ErrorsInVariables.jl
-Error-in-variables estimation using Compact Genetic Algorithms in Julia
+Error-in-variables estimation using Compact Genetic Algorithms in Julia.
+
+The package initially implements the CGA method proposed in the given references. Since Orthogonal regression and the Deming estimator are related to the subject, these methods are also implemented.
+
+The plan is to implement some other methods in this area.
+
 
 # The Problem 
 
