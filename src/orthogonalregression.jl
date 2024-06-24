@@ -7,11 +7,12 @@ export orthogonal_regression
 import ..Estimator: EiveResult
 
 """
-    orthogonal_regression(X::Matrix,
-    y::Vector,
-    xhasintercept::Bool=true,
-    maxiterations::Int=10000,
-    initialbetas::Union{Nothing, Vector} = nothing)::EiveResult
+    orthogonal_regression(
+        X::Matrix,
+        y::Vector,
+        xhasintercept::Bool=true,
+        maxiterations::Int=10000,
+        initialbetas::Union{Nothing, Vector} = nothing)::EiveResult
 
 # Description:
 
@@ -19,12 +20,22 @@ The function performs orthogonal regression. The method searches for a set of
 parameters that minimize the sum of squares of orthogonal residuals.
 
 # Arguments:
+
 `X::Matrix`: Independent variables. The first column should be 1 for the intercept.
+
 `y::Vector`: Dependent variable.
+
 `xhasintercept::Bool`: If true, the first column of X is considered as the intercept.
+
 `maxiterations::Int`: Maximum number of iterations.
+
 `initialbetas::Union{Nothing, Vector}`: Initial values for the parameters. 
 If nothing, random values are used.
+
+
+# Returns:
+
+`::EiveResult`: A struct containing the estimated parameters and convergence status.
 
 # Examples
 
