@@ -24,7 +24,7 @@ import .Eivem: meive
 import .CGA: cga, cgasample, converged 
 import .OrthogonalRegression: orthogonal_regression
 import .DemingRegression: deming
-import .SimulationExtrapolation: simex
+import .SimulationExtrapolation: simex, simex_single_iteration, simex_multiple_iterations, extrapolate
 
 
 export eive
@@ -35,6 +35,6 @@ export cgasample
 export converged 
 export orthogonal_regression
 export deming 
-export simex
+export simex, simex_single_iteration, simex_multiple_iterations, extrapolate
 
 end # module
