@@ -12,5 +12,6 @@ include("testestimator.jl")
 include("testmeive.jl")
 include("testorthogonalregression.jl")
 include("testdeming.jl")
+include("testsimex.jl")
 
 

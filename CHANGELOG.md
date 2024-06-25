@@ -1,5 +1,6 @@
 # v0.1.6 (Upcoming Release)
 
+- Implement SIMEX (Simulation Extrapolation)
 
 # v0.1.5 
 
