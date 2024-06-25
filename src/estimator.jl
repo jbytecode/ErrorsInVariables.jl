@@ -1,16 +1,14 @@
 module Estimator
 
 export eive
-export EiveResult
+
 
 
 import ..CGA: cga
+import ..SimpleEiveResult
 import Random: AbstractRNG, MersenneTwister
 
-struct EiveResult
-    betas::Vector{Float64}
-    converged::Bool
-end
+
 
 """
     eive(;
@@ -19,7 +17,7 @@ end
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::SimpleEiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 # Description:
 The method searches for a set of dummy (binary) variables that separates the erroneous independent variable
@@ -74,7 +72,7 @@ function eive(;
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::SimpleEiveResult where {T<:Real, RNGType<:AbstractRNG}
 
     if isnothing(otherx)
         return eivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
@@ -100,7 +98,7 @@ function eivewithotherx(
     otherx::Union{Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::SimpleEiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 
     n = length(dirtyx)
@@ -133,7 +131,7 @@ function eivewithotherx(
 
     outerbetas = X \ y
 
-    return EiveResult(outerbetas, true)
+    return SimpleEiveResult(outerbetas, true)
 end
 
 
@@ -150,7 +148,7 @@ function eivewithoutotherx(
     y::Vector{T},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::SimpleEiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 
     n = length(dirtyx)
@@ -182,7 +180,7 @@ function eivewithoutotherx(
 
     outerbetas = X \ y
 
-    return EiveResult(outerbetas, true)
+    return SimpleEiveResult(outerbetas, true)
 end
 
 

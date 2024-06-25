@@ -3,8 +3,8 @@ module Eivem
 
 export meive
 
-import ..Estimator: EiveResult
 import ..CGA: cga
+import ..SimpleEiveResult
 import Random: AbstractRNG, MersenneTwister
 
 
@@ -15,7 +15,7 @@ import Random: AbstractRNG, MersenneTwister
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::SimpleEiveResult where {T<:Real, RNGType<:AbstractRNG}
 
 # Description:
 This is the multivariate case of eive(). Please see eive() function. 
@@ -78,7 +78,7 @@ function meive(;
     otherx::Union{Nothing, Matrix{T}, Vector{T}},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType<:AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::SimpleEiveResult where {T<:Real, RNGType<:AbstractRNG}
 
     if isnothing(otherx)
         return meivewithoutotherx(dirtyx, y, popsize, numdummies, rng)
@@ -96,7 +96,7 @@ end
     popsize::Int = 50,
     numdummies::Int = 10,
     rng::RNGType = MersenneTwister(1234),
-)::EiveResult where {T<:Real, RNGType <: AbstractRNG}
+)::SimpleEiveResult where {T<:Real, RNGType <: AbstractRNG}
 """
 function meivewithotherx(
     dirtyx::Vector{T},
@@ -140,7 +140,7 @@ function meivewithotherx(
 
     outerbetas = X \ y[:, 1]
 
-    return EiveResult(outerbetas, true)
+    return SimpleEiveResult(outerbetas, true)
 end
 
 
@@ -158,7 +158,7 @@ function meivewithoutotherx(
     y::Matrix{T},
     popsize::Int = 50,
     numdummies::Int = 10,
-    rng::RNGType = MersenneTwister(1234))::EiveResult where {T<:Real, RNGType <: AbstractRNG}
+    rng::RNGType = MersenneTwister(1234))::SimpleEiveResult where {T<:Real, RNGType <: AbstractRNG}
 
     n = length(dirtyx)
     myones = ones(Float64, n)
@@ -193,7 +193,7 @@ function meivewithoutotherx(
 
     outerbetas = X \ y[:, 1]
 
-    return EiveResult(outerbetas, true)
+    return SimpleEiveResult(outerbetas, true)
 end
 
 

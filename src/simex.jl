@@ -2,6 +2,9 @@ module SimulationExtrapolation
 
 using Optim 
 
+
+import ..SimpleEiveResult
+
 export simex 
 export simex_single_iteration
 export simex_multiple_iterations
@@ -102,15 +105,28 @@ function simex(X::Matrix,
     y::Vector, 
     λ::Vector, 
     errorvarindex::Int, 
-    errvariance::Float64; numsims::Int = 1000)
+    errvariance::Float64; numsims::Int = 1000)::SimpleEiveResult
 
-    betamatrix = simex_multiple_iterations(x, y, lambdas, errorvarindex, 
+    n, p = size(X)
+
+    betamatrix = simex_multiple_iterations(X, y, λ, errorvarindex, 
                                                 errvariance, numsims=numsims)
 
     # Extrapolate for λ = -1
-    result = extrapolate(lambdas, betamatrix, errorvarindex) 
+    correctedbeta = extrapolate(λ, betamatrix, errorvarindex)
+    
+    # Remove the effect of the error variable from y vector 
+    newy = y - X[:, errorvarindex] * correctedbeta
+    
+    # Regress newy to X matrix but without the error variable
+    otherbetas = X[:, setdiff(1:p, errorvarindex)] \ newy
 
-    return result
+    # Combine correctedbeta and otherbetas
+    result = zeros(p)
+    result[errorvarindex] = correctedbeta
+    result[setdiff(1:p, errorvarindex)] = otherbetas
+     
+    return SimpleEiveResult(result, true)
 end 
 
 function simex end 

@@ -1,12 +1,13 @@
 module DemingRegression 
 
-import ..Estimator: EiveResult
 
 export deming 
 
 
+import ..SimpleEiveResult
+
 """
-    deming(x::Vector, y::Vector, λ::Float64 = 1.0)::EiveResult
+    deming(x::Vector, y::Vector, λ::Float64 = 1.0)::SimpleEiveResult
 
 # Description
 
@@ -40,7 +41,7 @@ result = deming(x, y, λ)
 # References
 - https://en.wikipedia.org/wiki/Deming_regression
 """
-function deming(x::Vector, y::Vector, λ::Float64 = 1.0)::EiveResult
+function deming(x::Vector, y::Vector, λ::Float64 = 1.0)::SimpleEiveResult
    
     n = length(x)
 
@@ -66,7 +67,7 @@ function deming(x::Vector, y::Vector, λ::Float64 = 1.0)::EiveResult
 
     b0 = ybar - b1 * xbar
 
-    return EiveResult([b0, b1], true)
+    return SimpleEiveResult([b0, b1], true)
 end # end of function
 
 

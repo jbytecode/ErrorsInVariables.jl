@@ -1,5 +1,12 @@
 module ErrorsInVariables
 
+abstract type EiveResult end 
+
+struct SimpleEiveResult <: EiveResult
+    betas::Vector{Float64}
+    converged::Bool
+end
+
 include("cga.jl")
 include("estimator.jl")
 include("meive.jl")
@@ -12,7 +19,7 @@ export CGA
 export Estimator
 export SimulationExtrapolation
 
-import .Estimator: eive, EiveResult
+import .Estimator: eive
 import .Eivem: meive
 import .CGA: cga, cgasample, converged 
 import .OrthogonalRegression: orthogonal_regression
@@ -22,7 +29,7 @@ import .SimulationExtrapolation: simex
 
 export eive
 export meive
-export EiveResult
+export EiveResult, SimpleEiveResult
 export cga
 export cgasample
 export converged 

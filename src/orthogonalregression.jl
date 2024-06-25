@@ -4,7 +4,7 @@ using Optim
 
 export orthogonal_regression
 
-import ..Estimator: EiveResult
+import ..SimpleEiveResult
 
 """
     orthogonal_regression(
@@ -12,7 +12,7 @@ import ..Estimator: EiveResult
         y::Vector;
         xhasintercept::Bool=true,
         maxiterations::Int=10000,
-        initialbetas::Union{Nothing, Vector} = nothing)::EiveResult
+        initialbetas::Union{Nothing, Vector} = nothing)::SimpleEiveResult
 
 # Description:
 
@@ -53,7 +53,7 @@ function orthogonal_regression(X::Matrix,
     y::Vector;
     xhasintercept::Bool=true,
     maxiterations::Int=10000,
-    initialbetas::Union{Nothing, Vector} = nothing)::EiveResult
+    initialbetas::Union{Nothing, Vector} = nothing)::SimpleEiveResult
 
     _, p = size(X)
 
@@ -81,7 +81,7 @@ function orthogonal_regression(X::Matrix,
         Newton(),
         Optim.Options(g_tol=1e-6, iterations=maxiterations))
 
-    return EiveResult(
+    return SimpleEiveResult(
         Optim.minimizer(result), 
         Optim.converged(result))
 end
