@@ -18,8 +18,7 @@ export extrapolate
         λ::Float64, 
         errorvarindex::Int, 
         errvariance::Float64; 
-        numsims::Int = 1000
-    )::Vector
+        numsims::Int = 1000)::Vector
 
 # Description
 
@@ -191,8 +190,7 @@ end
     λ::Vector,
     errorvarindex::Int,
     errvariance::Float64;
-    numsims::Int = 1000
-)::SimpleEiveResult
+    numsims::Int = 1000)::SimpleEiveResult
 
 # Description
 
