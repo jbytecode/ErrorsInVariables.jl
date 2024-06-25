@@ -14,6 +14,7 @@ makedocs(
         "CGA" => "cga.md",
         "Orthogonal Regression" => "orthogonalregression.md",
         "Deming Regression" => "deming.md",
+        "Simulation Extrapolation" => "simex.md",
     ]
 )
 
