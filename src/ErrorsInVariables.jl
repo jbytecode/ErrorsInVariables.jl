@@ -14,12 +14,14 @@ include("orthogonalregression.jl")
 include("deming.jl")
 include("simex.jl")
 include("iv.jl")
+include("dd.jl")
 
 
 export CGA
 export Estimator
 export SimulationExtrapolation
 export IV
+export DD
 
 import .Estimator: eive
 import .Eivem: meive
@@ -28,6 +30,7 @@ import .OrthogonalRegression: orthogonal_regression
 import .DemingRegression: deming
 import .SimulationExtrapolation: simex, simex_single_iteration, simex_multiple_iterations, extrapolate
 import .IV: iv
+import .DD: dd 
 
 export eive
 export meive
@@ -51,4 +54,5 @@ export extrapolate
 
 export iv 
 
+export dd
 end # module
