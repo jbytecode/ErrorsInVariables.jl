@@ -15,6 +15,8 @@ makedocs(
         "Orthogonal Regression" => "orthogonalregression.md",
         "Deming Regression" => "deming.md",
         "Simulation Extrapolation" => "simex.md",
+        "IV Regression" => "iv.md",
+        "DD Higher Moment Estimator" => "dd.md",
     ]
 )
 

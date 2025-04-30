@@ -2,6 +2,7 @@
 
 - Implement IV (Instrumental Variables) regression estimator
 - Implement DD (Dagenais and Dagenais, 1997) moments estimator
+- Update documentation
 
 # v0.1.6
 
