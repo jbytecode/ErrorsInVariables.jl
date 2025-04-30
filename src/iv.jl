@@ -2,8 +2,6 @@ module IV
 
 export iv
 
-import ..ErrorsInVariables: Either, Left, Right
-
 
 """
     iv(X::Matrix, y::Vector, Z::Matrix)::Vector
@@ -24,22 +22,22 @@ computed using the formula:
     betas = inv(part * X) * part * y
 ```
 """
-function iv(X::Matrix, y::Vector, Z::Matrix)::Either
+function iv(X::Matrix, y::Vector, Z::Matrix)::Union{String, Vector}
 
     numberofinstruments = size(Z, 2)
     
     numberofpredictors = size(X, 2)
 
     if numberofinstruments < numberofpredictors 
-        return Left("Error: Number of instruments must be greater than or equal to the number of predictors.")
+        return "Error: Number of instruments must be greater than or equal to the number of predictors."
     end
 
     if numberofinstruments == numberofpredictors
-        return Right(inv(Z'X)Z'y)
+        return inv(Z'X)Z'y
     else
         part = X' * Z * inv(Z' * Z) * Z' 
         betas = inv(part * X) * part * y
-        return Right{Vector}(betas)
+        return betas
     end
 
 end
