@@ -18,7 +18,7 @@ computed using the formula:
 If the number of instruments is greater than the number of predictors, the IV estimator is
 computed using the formula:
 ```julia
-    part = X' * Z * inv(Z' * Z) * Z' * X
+    part = X' * Z * inv(Z' * Z) * Z' 
     betas = inv(part * X) * part * y
 ```
 """
@@ -33,7 +33,7 @@ function iv(X::Matrix, y::Vector, Z::Matrix)::Vector
     if numberofinstruments == numberofpredictors
         return inv(Z'X)Z'y
     else
-        part = X' * Z * inv(Z' * Z) * Z' * X
+        part = X' * Z * inv(Z' * Z) * Z' 
         betas = inv(part * X) * part * y
         return betas
     end

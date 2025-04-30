@@ -1,5 +1,7 @@
 # v0.1.7 (Upcoming Release)
 
+- Implement IV (Instrumental Variables) regression estimator
+- Implement DD (Dagenais and Dagenais, 1997) moments estimator
 
 # v0.1.6
 
