@@ -34,7 +34,12 @@ using Random
 
         Z = dd(hcat(dirtyx, cleanx2, cleanx3), y)
 
-        result = iv(Xd, y, Z)
+        result_either = iv(Xd, y, Z)
+
+        result = @cases result_either begin
+            Right(x) => x
+            Left(x) => error("Error: $x")
+        end
 
         expected_dd_betas = [18.488555621677015, 6.283197918953448, 15.765140901269259, 12.061208813549317]
 

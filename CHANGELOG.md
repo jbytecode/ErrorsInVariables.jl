@@ -3,6 +3,7 @@
 - Implement IV (Instrumental Variables) regression estimator
 - Implement DD (Dagenais and Dagenais, 1997) moments estimator
 - Update documentation
+- Introduce Either sum type for better error handling
 
 # v0.1.6
 

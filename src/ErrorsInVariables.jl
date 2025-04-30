@@ -1,5 +1,12 @@
 module ErrorsInVariables
 
+using SumTypes
+
+@sum_type Either{A, B} begin
+    Left{A}(::A)
+    Right{B}(::B)
+end
+
 abstract type EiveResult end 
 
 struct SimpleEiveResult <: EiveResult
@@ -16,6 +23,7 @@ include("simex.jl")
 include("iv.jl")
 include("dd.jl")
 
+export Either, Left, Right
 
 export CGA
 export Estimator
@@ -23,6 +31,7 @@ export SimulationExtrapolation
 export IV
 export DD
 
+import .SumTypes: @cases, @sum_type
 import .Estimator: eive
 import .Eivem: meive
 import .CGA: cga, cgasample, converged 
@@ -31,6 +40,8 @@ import .DemingRegression: deming
 import .SimulationExtrapolation: simex, simex_single_iteration, simex_multiple_iterations, extrapolate
 import .IV: iv
 import .DD: dd 
+
+export @cases, @sum_type
 
 export eive
 export meive

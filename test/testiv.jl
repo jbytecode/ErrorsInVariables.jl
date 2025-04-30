@@ -16,9 +16,14 @@ using ErrorsInVariables
 
         expected_betas = [0.0, 2.0]
 
-        ivbetas = iv(X, y, Z)
+        ivbetas_either = iv(X, y, Z)
 
-        @test ivbetas isa Vector
+        @test ivbetas_either isa Either
+
+        ivbetas = @cases ivbetas_either begin
+            Right(x) => x
+            Left(x) => error("Error: $x")
+        end
 
         @test length(ivbetas) == 2
 
