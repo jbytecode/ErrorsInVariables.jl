@@ -1,0 +1,43 @@
+module IV
+
+export iv
+
+
+"""
+    iv(X::Matrix, y::Vector, Z::Matrix)::Vector
+
+Computes the Instrumental Variable (IV) estimator for a linear regression model.
+
+# Description
+
+If the number of instruments is equal to the number of predictors, the IV estimator is 
+computed using the formula:
+```julia
+    betas = inv(Z'X)Z'y
+```
+If the number of instruments is greater than the number of predictors, the IV estimator is
+computed using the formula:
+```julia
+    part = X' * Z * inv(Z' * Z) * Z' * X
+    betas = inv(part * X) * part * y
+```
+"""
+function iv(X::Matrix, y::Vector, Z::Matrix)::Vector 
+
+    numberofinstruments = size(Z, 2)
+    
+    numberofpredictors = size(X, 2)
+
+    @assert numberofinstruments >= numberofpredictors 
+
+    if numberofinstruments == numberofpredictors
+        return inv(Z'X)Z'y
+    else
+        part = X' * Z * inv(Z' * Z) * Z' * X
+        betas = inv(part * X) * part * y
+        return betas
+    end
+
+end
+
+end # end of module IV
