@@ -55,7 +55,7 @@ function orthogonal_regression(X::Matrix,
     maxiterations::Int=10000,
     initialbetas::Union{Nothing, Vector} = nothing)::SimpleEiveResult
 
-    _, p = size(X)
+    n, p = size(X)
 
     if isnothing(initialbetas)
         initial = rand(p)
@@ -63,14 +63,17 @@ function orthogonal_regression(X::Matrix,
         initial = initialbetas
     end
 
+    ortres = Array{Float64, 1}(undef, n)
+    res = Array{Float64, 1}(undef, n)
+
     function objective(params)
-        res = y .- X * params
+        res .= y .- X * params
         exclude_intercept = params[2:end]
         if xhasintercept
             exclude_intercept = params[2:end]
-            ortres = res ./ sqrt(1 .+ sum(exclude_intercept .^ 2))
+            ortres .= res ./ sqrt(1 .+ sum(exclude_intercept .^ 2))
         else
-            ortres = res ./ sqrt(1 .+ sum(params .^ 2))
+            ortres .= res ./ sqrt(1 .+ sum(params .^ 2))
         end
         retval = sum(ortres .^ 2)
         return retval

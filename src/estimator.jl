@@ -107,24 +107,30 @@ function eivewithotherx(
     
     chsize = n * numdummies
 
+    res = Array{Float64, 1}(undef, n)
+
+    auxX = Array{Float64, 2}(undef, n, numdummies)
+
+    betas = Array{Float64, 1}(undef, numdummies)
+
 
     function costfn(bits::Vector{Int})
-        auxX = reshape(bits, n, numdummies)
-        betas = auxX \ dirtyx
+        auxX .= reshape(bits, n, numdummies)
+        betas .= auxX \ dirtyx
         cleanX = auxX * betas
 
         X = hcat(myones, cleanX, otherx)
 
         outerbetas = X \ y
-        res = y .- X * outerbetas
+        res .= y .- X * outerbetas
 
         return sum(res .^ 2.0)
     end
 
     finalbits = cga(chsize = chsize, costfunction = costfn, popsize = popsize, rng = rng)
 
-    auxX = reshape(finalbits, n, numdummies)
-    betas = auxX \ dirtyx
+    auxX .= reshape(finalbits, n, numdummies)
+    betas .= auxX \ dirtyx
     cleanX = auxX * betas
 
     X = hcat(myones, cleanX, otherx)
@@ -157,23 +163,26 @@ function eivewithoutotherx(
     
     chsize = n * numdummies
 
+    res = Array{Float64, 1}(undef, n)
+    auxX = Array{Float64, 2}(undef, n, numdummies)
+    betas = Array{Float64, 1}(undef, numdummies)
 
     function costfn(bits::Vector{Int})
-        auxX = reshape(bits, n, numdummies)
-        betas = auxX \ dirtyx
+        auxX .= reshape(bits, n, numdummies)
+        betas .= auxX \ dirtyx
         cleanX = auxX * betas
 
         X = hcat(myones, cleanX)
 
         outerbetas = X \ y
-        res = y .- X * outerbetas
+        res .= y .- X * outerbetas
         return sum(res .^ 2.0)
     end
 
     finalbits = cga(chsize = chsize, costfunction = costfn, popsize = popsize, rng = rng)
 
-    auxX = reshape(finalbits, n, numdummies)
-    betas = auxX \ dirtyx
+    auxX .= reshape(finalbits, n, numdummies)
+    betas .= auxX \ dirtyx
     cleanX = auxX * betas
 
     X = hcat(myones, cleanX)

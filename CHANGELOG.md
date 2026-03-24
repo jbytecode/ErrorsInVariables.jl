@@ -1,9 +1,13 @@
-# v0.1.7 (Upcoming Release)
+# v0.1.8 (Upcoming Release)
+
+
+# v0.1.7
 
 - Implement IV (Instrumental Variables) regression estimator
 - Implement DD (Dagenais and Dagenais, 1997) moments estimator
 - Update documentation
 - Introduce Union types for better error handling
+- Implement in-place vector mutations rather than creating and copying new vectors
 
 # v0.1.6
 

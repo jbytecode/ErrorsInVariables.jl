@@ -49,6 +49,22 @@ function cgasample(
 	return map(sampler, probvector)
 end
 
+function cgasampleinto!(
+	probvector::Vector{T}, 
+	rng::RNGType, 
+	samplevector::Vector{Int})::Nothing where {T <: Real, RNGType <: AbstractRNG}
+
+	for i ∈ 1:length(probvector)
+		if rand(rng) < probvector[i]
+			samplevector[i] = 1
+		else
+			samplevector[i] = 0
+		end
+	end
+
+	return nothing
+end
+
 
 
 function converged(probvector::Vector{T}) where {T <: Real}
@@ -110,27 +126,27 @@ function cga(;
 
 	probvector = ones(Float64, chsize) * 0.5
 	mutation = 1.0 / convert(Float64, popsize)
+	candidate1 = Array{Int, 1}(undef, chsize)
+	candidate2 = Array{Int, 1}(undef, chsize)
 
 	while !converged(probvector)
 
-		ch1 = cgasample(probvector, rng)
-		ch2 = cgasample(probvector, rng)
+		cgasampleinto!(probvector, rng, candidate1)
+		cgasampleinto!(probvector, rng, candidate2)
 
-		cost1 = costfunction(ch1)
-		cost2 = costfunction(ch2)
+		cost1 = costfunction(candidate1)
+		cost2 = costfunction(candidate2)
 
-		winner = ch1
-		loser = ch2
-		if (cost2 < cost1)
-			winner = ch2
-			loser = ch1
+		if cost1 < cost2 
+			cgaupdate!(probvector, candidate1, candidate2, mutation)
+		else
+			cgaupdate!(probvector, candidate2, candidate1, mutation)
 		end
 
-		cgaupdate!(probvector, winner, loser, mutation)
-
 	end
-
-	return cgasample(probvector, rng)
+	
+	cgasampleinto!(probvector, rng, candidate1)
+	return candidate1
 end
 
 end # End of module
