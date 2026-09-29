@@ -17,6 +17,7 @@ makedocs(
         "Simulation Extrapolation" => "simex.md",
         "IV Regression" => "iv.md",
         "DD Higher Moment Estimator" => "dd.md",
+        "Corrected Least Squares" => "correctedleastsquares.md",
     ]
 )
 

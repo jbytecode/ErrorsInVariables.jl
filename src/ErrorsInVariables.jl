@@ -15,6 +15,7 @@ include("deming.jl")
 include("simex.jl")
 include("iv.jl")
 include("dd.jl")
+include("correctedleastsquares.jl")
 
 
 export CGA
@@ -22,6 +23,7 @@ export Estimator
 export SimulationExtrapolation
 export IV
 export DD
+export CorrectedLeastSquares
 
 
 import .Estimator: eive
@@ -32,6 +34,7 @@ import .DemingRegression: deming
 import .SimulationExtrapolation: simex, simex_single_iteration, simex_multiple_iterations, extrapolate
 import .IV: iv
 import .DD: dd 
+import .CorrectedLeastSquares: corrected_least_squares
 
 
 export eive
@@ -57,4 +60,6 @@ export extrapolate
 export iv 
 
 export dd
+
+export corrected_least_squares
 end # module

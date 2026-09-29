@@ -1,5 +1,7 @@
 # v0.1.8 (Upcoming Release)
 
+- Implement corrected least squares for linear models with a supplied
+  measurement-error covariance matrix.
 
 # v0.1.7
 
